@@ -1,0 +1,2 @@
+PORT=8000
+MONGODB_URI=MONGODB_URI=mongodb+srv://danielbudai:<password>@movie-review-platform.aooozsq.mongodb.net/?retryWrites=true&w=majority&appName=movie-review-platform
