@@ -46,15 +46,42 @@ const getMovieById = async (req, res) => {
 };
 
 const updateMovieById = async (req, res) => {
-  // Implement your logic here
-};
+  const id = req.params.id;
 
-const getMovieReviews = async (req, res) => {
-  // Implement your logic here
+  const { title, director, releaseYear, genre } = req.body;
+
+  try {
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      id,
+      { title, director, releaseYear, genre },
+      { new: true }
+    );
+
+    if (!updatedMovie) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    res.status(200).json(updatedMovie);
+  } catch (error) {
+    res.status(500).json({ error: "There was a server error." });
+  }
 };
+const getMovieReviews = async (req, res) => {};
 
 const deleteMovieById = async (req, res) => {
-  // Implement your logic here
+  const id = req.params.id;
+
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(id);
+
+    if (!deletedMovie) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    res.status(200).json(deletedMovie);
+  } catch (error) {
+    res.status(500).json({ error: "There was a server error." });
+  }
 };
 
 module.exports = {
