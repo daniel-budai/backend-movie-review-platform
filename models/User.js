@@ -9,5 +9,3 @@ const UserSchema = new Schema({
 });
 
 module.exports = mongoose.model("User", UserSchema);
-
-/* använd olika roller: user och admin. Alla kan hämta filmer samt läsa/skriva rescensioner men endast admin kan lägga till, uppdatera eller ta bort filmer.*/
