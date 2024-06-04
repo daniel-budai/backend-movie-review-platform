@@ -1,4 +1,5 @@
 const Movie = require("../models/Movie");
+const Review = require("../models/Review");
 
 const addMovie = async (req, res) => {
   const { title, director, releaseYear, genre } = req.body;
@@ -65,7 +66,22 @@ const updateMovieById = async (req, res) => {
     res.status(500).json({ error: "There was a server error." });
   }
 };
-const getMovieReviews = async (req, res) => {};
+
+const getMovieReviews = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const reviews = await Review.find({ movieId: id });
+
+    if (!reviews.length) {
+      return res.status(404).json({ error: "No reviews found for this movie" });
+    }
+
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: "There was a server error." });
+  }
+};
 
 const deleteMovieById = async (req, res) => {
   const id = req.params.id;
