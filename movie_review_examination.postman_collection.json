@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "9a87a9f3-4e7b-41d1-8758-538fc06411e8",
+		"name": "movie review examination",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33254893"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@example.com\",\r\n    \"password\": \"user\",\r\n    \"role\": \"user\" \r\n}\r\n\r\n/*\r\n{\r\n    \"username\": \"admin\",\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"admin\",\r\n    \"role\": \"admin\" \r\n}\r\n */ ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@example.com\",\r\n    \"password\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "Add movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE1ZDRhOWUzNTBjYmFhZmNhMTYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc1MDIzMDgsImV4cCI6MTcxNzUzMTEwOH0.1blsuEUvqrz9hMsZp9VUVn2l7IRz5-n9f__mc-2_6rk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"fdsfsfs\",\r\n    \"director\": \"John Doe\",\r\n    \"releaseYear\": 2004,\r\n    \"genre\": \"action\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all movies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/movies/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update movie by ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE1ZDRhOWUzNTBjYmFhZmNhMTYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc1MDIzMDgsImV4cCI6MTcxNzUzMTEwOH0.1blsuEUvqrz9hMsZp9VUVn2l7IRz5-n9f__mc-2_6rk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"title\": \"Toys Story\",\r\n    \"director\": \"Someone from Disney\",\r\n    \"releaseYear\": 1999,\r\n    \"genre\": \"Animated\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/movies/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a movie by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE1ZDRhOWUzNTBjYmFhZmNhMTYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc1MDIzMDgsImV4cCI6MTcxNzUzMTEwOH0.1blsuEUvqrz9hMsZp9VUVn2l7IRz5-n9f__mc-2_6rk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/movies/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Average rating",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/movies/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reviews for a specific movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/movies/665eef234a9e350cbaafc9dd/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"movies",
+								"665eef234a9e350cbaafc9dd",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE5ZjRhOWUzNTBjYmFhZmNhMTkiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNzUwMjM4MiwiZXhwIjoxNzE3NTMxMTgyfQ.qBv223kOJTkZ9XDx3MeY-l8nNXRYSlR0uxxo3Sa0q3A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movieId\": \"665f022d4a9e350cbaafca1c\",\r\n  \"rating\": 3,\r\n  \"comment\": \"I did not like it\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all reviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get review by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reviews/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reviews",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE1ZDRhOWUzNTBjYmFhZmNhMTYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc1MDIzMDgsImV4cCI6MTcxNzUzMTEwOH0.1blsuEUvqrz9hMsZp9VUVn2l7IRz5-n9f__mc-2_6rk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"rating\": 10,\r\n  \"comment\": \"fantastic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reviews/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reviews",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete review by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmMDE1ZDRhOWUzNTBjYmFhZmNhMTYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc1MDIzMDgsImV4cCI6MTcxNzUzMTEwOH0.1blsuEUvqrz9hMsZp9VUVn2l7IRz5-n9f__mc-2_6rk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/reviews/665f022d4a9e350cbaafca1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reviews",
+								"665f022d4a9e350cbaafca1c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
