@@ -1,5 +1,4 @@
 const Movie = require("../models/Movie");
-const Review = require("../models/Review");
 
 const addMovie = async (req, res) => {
   const { title, director, releaseYear, genre } = req.body;
@@ -84,6 +83,40 @@ const deleteMovieById = async (req, res) => {
   }
 };
 
+const averageRating = async (req, res) => {
+  try {
+    const moviesWithAverageRating = await Movie.aggregate([
+      {
+        $lookup: {
+          from: "reviews",
+          localField: "_id",
+          foreignField: "movieId",
+          as: "reviews",
+        },
+      },
+      {
+        $unwind: {
+          path: "$reviews",
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          title: { $first: "$title" },
+          director: { $first: "$director" },
+          releaseYear: { $first: "$releaseYear" },
+          genre: { $first: "$genre" },
+          averageRating: { $avg: "$reviews.rating" },
+        },
+      },
+    ]);
+
+    res.status(200).json(moviesWithAverageRating);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 module.exports = {
   addMovie,
   getAllMovies,
@@ -91,4 +124,5 @@ module.exports = {
   updateMovieById,
   getMovieReviews,
   deleteMovieById,
+  averageRating,
 };
